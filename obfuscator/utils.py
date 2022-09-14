@@ -2,6 +2,9 @@
 from __future__ import unicode_literals
 
 import hashlib
+import random
+import datetime
+import time
 
 from obfuscator.conf import settings
 
@@ -28,6 +31,20 @@ class ObfuscatorUtils(object):
         if max_length and length > max_length:
             hashed_value = hashed_value[:(max_length - length)]
         return hashed_value
+
+    @staticmethod
+    def date(value,**kwargs):
+        """ """
+        random.seed(20)
+        d = random.randint(1, int(time.time()))
+        after = datetime.fromtimestamp(d)
+        print('before %s, after %s' % (str(value), str(after)))
+        return after
+        # hashed_value = hashlib.sha224(value.encode('utf-8')).hexdigest()
+        # length = len(hashed_value)
+        # if max_length and length > max_length:
+        #     hashed_value = hashed_value[:(max_length - length)]
+        # return hashed_value
 
     @classmethod
     def obfuscate(cls, field, value):
