@@ -35,9 +35,13 @@ class ObfuscatorUtils(object):
     @staticmethod
     def date(value,**kwargs):
         """ """
-        random.seed(20)
-        d = random.randint(1, int(time.time()))
-        after = datetime.fromtimestamp(d)
+        # random.seed(random.randint(1, 10))
+        # d = random.randint(1, int(time.time()))
+        # after = datetime.fromtimestamp(d)
+        month = random.choice([1,2,3,4,5,6,7,8,9])
+        day = random.choice([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
+        year = random.choice([1990, 1995, 1998, 2005, 2006, 2020])
+        after = datetime.date(year, month, day)
         print('before %s, after %s' % (str(value), str(after)))
         return after
         # hashed_value = hashlib.sha224(value.encode('utf-8')).hexdigest()
